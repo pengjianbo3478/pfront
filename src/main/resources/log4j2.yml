@@ -1,0 +1,42 @@
+Configuration:
+  status: warn
+  name: Log4jYAMLConfig
+  properties:
+    property:
+      name: filename
+      value: /logs/pfront.log
+  thresholdFilter:
+    level: debug
+  Appenders:
+    Console:
+      name: STDOUT
+      PatternLayout:
+        Pattern: "%d{yyyy-MM-dd HH:mm:ss} [%-5p][%t][pfront - %X{X-B3-TraceId} - %X{X-B3-SpanId} - %X{X-B3-ParentSpanId}][%l{1.}] - %m%n"
+    File:
+      name: File
+      fileName: ${filename}
+#      bufferedIO: false
+      PatternLayout:
+        Pattern: "%d %p [pfront - %X{X-B3-TraceId} - %X{X-B3-SpanId} - %X{X-B3-ParentSpanId}][%t][%l{1.}] %m%n"
+    Kafka:
+      name: KAFKA
+#      syncSend: false
+      topic: test_log
+      PatternLayout:
+        pattern: "%d [%p]${hostName}[pfront - %X{X-B3-TraceId} - %X{X-B3-SpanId} - %X{X-B3-ParentSpanId}] [%t] - [%l] %m%n"
+      Property:
+        - name: bootstrap.servers
+          value: 192.168.0.13:9092
+  Loggers:
+    logger:
+      -
+        name: com.gl365
+        level: debug
+        AppenderRef:
+          ref: STDOUT
+    Root:
+      level: info
+      AppenderRef:
+        - ref: STDOUT
+#        - ref: File
+#        - ref: KAFKA

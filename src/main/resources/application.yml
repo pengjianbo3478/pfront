@@ -1,0 +1,27 @@
+#开发联调环境
+dev:
+    url:
+     payquery: http://10.252.252.103:18181
+     account: http://10.252.252.103:18080
+     settlequery: http://10.252.252.103:18182
+     merchant: http://10.252.252.103:18086
+     message: http://10.252.252.102:18287
+     order: http://10.252.252.103:18088
+     member: http://10.252.252.103:18085
+     validator: http://10.252.252.102:18285
+
+#本机服务
+localhost:
+    url:
+        member: http://localhost:8081
+        merchant: http://localhost:8083
+        order: http://localhost:8084
+        
+        
+#server:
+#  port: 8080
+#spring:
+#  cloud:
+#    consul:
+#      discovery:
+#        hostname: 192.168.0.147
